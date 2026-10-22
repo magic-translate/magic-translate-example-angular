@@ -10,13 +10,17 @@ if (!apiKey) {
   process.exit(1);
 }
 
-const environment = {
-  magicTranslateApiKey: apiKey,
-  magicTranslateApiUrl: process.env.MAGIC_TRANSLATE_API_URL || undefined,
-};
+const apiUrl = process.env.MAGIC_TRANSLATE_API_URL;
 
 mkdirSync('src/environments', { recursive: true });
 writeFileSync(
   'src/environments/environment.ts',
-  `export const environment = ${JSON.stringify(environment, null, 2)};\n`,
+  `export const environment: {
+  magicTranslateApiKey: string;
+  magicTranslateApiUrl?: string;
+} = {
+  magicTranslateApiKey: ${JSON.stringify(apiKey)},
+  magicTranslateApiUrl: ${apiUrl ? JSON.stringify(apiUrl) : 'undefined'},
+};
+`
 );
