@@ -39,6 +39,7 @@ import { StaticTranslations } from './static-translations.resolver';
     <p class="text-center">{{ t.intro }}</p>
     <p class="text-center">{{ t.prerendered }}</p>
     <p class="text-center">{{ t.network }}</p>
+    <p class="text-center">{{ translations().available }}</p>
 
     <p class="text-center">
       <a href="./">← {{ t.goBack }}</a>

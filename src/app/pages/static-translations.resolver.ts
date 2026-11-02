@@ -14,9 +14,13 @@ export const texts = {
   goBack: 'Go back',
 };
 
+// Translated with `v`, so the count is put into the translation afterwards.
+const available = 'This page is available in $count languages.';
+
 export interface StaticTranslations {
   language: AvailableLanguage;
   texts: Record<keyof typeof texts, string>;
+  available: string;
   // every language's name in that language itself
   languageNames: Record<AvailableLanguage, string>;
 }
@@ -55,6 +59,10 @@ export const staticTranslationsResolver: ResolveFn<StaticTranslations> = async (
       Object.entries(texts) as [keyof typeof texts, string][],
       () => language,
     ),
+    available: await magicTranslate.translate(available, {
+      lang: language,
+      v: { count: Object.keys(languages).length },
+    }),
     languageNames: await translateAll(
       Object.entries(languages) as [AvailableLanguage, string][],
       (lang) => lang,

@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { T } from '@magic-translate/angular';
 import { GetStarted } from '../components/get-started';
+import { Greeting } from '../components/greeting';
 import { LandingPageLinks } from '../components/landing-page-links';
 import { LanguageSwitcher } from '../components/language-switcher';
 import { Logo } from '../components/logo';
 
 @Component({
   selector: 'app-home-page',
-  imports: [T, GetStarted, LanguageSwitcher, Logo, LandingPageLinks],
+  imports: [T, GetStarted, Greeting, LanguageSwitcher, Logo, LandingPageLinks],
   host: { class: 'contents' },
   template: `
     <app-get-started>
@@ -18,6 +19,8 @@ import { Logo } from '../components/logo';
     <app-language-switcher />
 
     <app-logo />
+
+    <app-greeting />
 
     <app-landing-page-links />
   `,
